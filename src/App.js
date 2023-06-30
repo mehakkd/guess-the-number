@@ -3,6 +3,7 @@ import './App.css';
 import TextField from '@mui/material/TextField';
 import {useState} from 'react';
 
+
 let numberToGuess= getRandomInt(0, 10);
   console.log("The number to guess is", numberToGuess);
 
@@ -15,6 +16,7 @@ function getRandomInt(min, max) {
 
 const App= () => {
   const [guess, setGuess] = useState(0);
+  const [guessCorrectMsg, setGuessCorrectMsg] = useState("Enter a guess to begin guessing.");
 
   const handleChange = (event) => {
     setGuess(event.target.value);
@@ -24,8 +26,12 @@ const App= () => {
     console.log("button clicked the current guess is", guess);
     if (parseInt(guess)===numberToGuess){
       console.log("The guess was correct");
+      setGuessCorrectMsg("Congrats, you guessed correctly! Refresh to play again.");
+      console.log(guessCorrectMsg);
     } else {
       console.log("The guess was wrong");
+      setGuessCorrectMsg("You guessed incorrectly. Try again.");
+      console.log(guessCorrectMsg);
     }
   }
 
@@ -50,6 +56,9 @@ const App= () => {
         <br></br>
         <br></br>
         <button onClick= {handleClick} ><b>Guess</b></button>
+        <br></br>
+        <p>{guessCorrectMsg}</p>
+        
     </div>
   );
 }
